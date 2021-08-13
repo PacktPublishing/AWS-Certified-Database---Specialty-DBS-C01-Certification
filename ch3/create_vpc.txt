@@ -1,0 +1,47 @@
+# To use this code, you will need to run each step line by line and use the output as detailed in Chapter 3: AWS Infrastructure to modify the id settings in the subsequent lines. The lines that are grouped together can be run as one once you have updated the ids.
+# First create the VPC
+aws ec2 create-vpc --cidr-block 10.1.0.0/16
+
+# Create four subnets, first two will be public and final two will be private
+aws ec2 create-subnet --vpc-id vpc-id --cidr-block 10.1.1.0/24
+aws ec2 create-subnet --vpc-id vpc-id --cidr-block 10.1.2.0/24
+aws ec2 create-subnet --vpc-id vpc-id --cidr-block 10.1.3.0/24
+aws ec2 create-subnet --vpc-id vpc-id --cidr-block 10.1.4.0/24
+
+# Create the internet gateway
+aws ec2 create-internet-gateway
+
+# Attach the internet gateway to the VPC
+aws ec2 attach-internet-gateway --vpc-id vpc-id --internet-gateway-id igw-id
+
+# Create two elastic IPs for the NAT gateway
+aws ec2 allocate-address –domain vpc
+aws ec2 allocate-address –domain vpc
+
+# Create two NAT gateways in each of the private subnets using the elastic IPs
+aws ec2 create-nat-gateway --subnet-id subnet-id --allocation-id eipalloc-id
+aws ec2 create-nat-gateway --subnet-id subnet-id --allocation-id eipalloc-id
+
+# Create three route tables, one for the public subnets and two for the private subnets
+aws ec2 create-route-table --vpc-id vpc-id
+aws ec2 create-route-table --vpc-id vpc-id
+aws ec2 create-route-table --vpc-id vpc-id
+
+# Add a route for all non-VPC traffic to the internet gateway
+aws ec2 create-route --route-table-id rtb-id --destination-cidr-block 0.0.0.0/0 --gateway-id igw-id
+
+# Add a route for all non-VPC traffic to the NAT gateway for your private subnets
+aws ec2 create-route --route-table-id rtb-id --destination-cidr-block 0.0.0.0/0 –nat-gateway-id nat-id
+aws ec2 create-route --route-table-id rtb-id --destination-cidr-block 0.0.0.0/0 –nat-gateway-id nat-id
+
+# Associate the internet gateway route table with the public subnets
+aws ec2 associate-route-table --subnet-id subnet-id --route-table-id rtb-id
+aws ec2 associate-route-table --subnet-id subnet-id --route-table-id rtb-id
+
+# Associate the NAT gateway route table with the private subnets
+aws ec2 associate-route-table --subnet-id subnet-id --route-table-id rtb-id
+aws ec2 associate-route-table --subnet-id subnet-id --route-table-id rtb-id
+
+# Associate a public IP with the two public subnets
+aws ec2 modify-subnet-attribute --subnet-id subnet-id --map-public-ip-on-launch
+aws ec2 modify-subnet-attribute --subnet-id subnet-id --map-public-ip-on-launch
