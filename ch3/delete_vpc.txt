@@ -1,0 +1,22 @@
+# To use this code, you will need to run each step line by line and use the output as detailed in Chapter 3: AWS Infrastructure to modify the id settings you created earlier. The lines that are grouped together can be run as one once you have updated the ids.
+# Delete the subnets
+aws ec2 delete-subnet --subnet-id subnet-id
+aws ec2 delete-subnet --subnet-id subnet-id
+aws ec2 delete-subnet --subnet-id subnet-id
+aws ec2 delete-subnet --subnet-id subnet-id
+
+# Delete the route tables
+aws ec2 delete-route-table --route-table-id rtb-id
+aws ec2 delete-route-table --route-table-id rtb-id
+aws ec2 delete-route-table --route-table-id rtb-id
+
+# Detach the internet gateway from the VPC and delete it
+aws ec2 detach-internet-gateway --internet-gateway-id igw-id --vpc-id vpc-id
+aws ec2 delete-internet-gateway --internet-gateway-id igw-id
+
+# Delete the NAT gateways
+aws ec2 delete-nat-gateway --nat-gateway-id nat-id
+aws ec2 delete-nat-gateway --nat-gateway-id nat-id
+
+# Delete the VPC:
+aws ec2 delete-vpc --vpc-id vpc-id
