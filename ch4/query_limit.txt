@@ -1,0 +1,19 @@
+aws dynamodb query \ 
+
+    --table-name GameScores \ 
+
+    --index-name GameTitleScores 
+
+    --key-condition-expression "GameName = :game\ 
+
+    --expression-attribute-values '{ 
+
+        ":gamename": { "S": "Bug Hunt" } 
+
+    --projection-expression "PlayerID, HighScore" \ 
+
+    --no-scan-index-forward 
+
+    --max-items 1 
+
+    }' 
