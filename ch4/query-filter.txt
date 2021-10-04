@@ -1,0 +1,17 @@
+aws dynamodb query \ 
+
+    --table-name GameScores \ 
+
+    --key-condition-expression "PlayerID = :playerid AND GameName = :gamename\ 
+
+    --expression-attribute-values '{ 
+
+        ":playerid": { "S": "JohnS" }, 
+
+        ":gamename": { "S": "Bug Hunt" } 
+
+    }' 
+
+    --filter-expression “HighScore > :score“\ 
+
+    --projection-expression "PlayerID, GameName, HighScore” 
