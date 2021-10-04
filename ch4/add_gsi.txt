@@ -1,0 +1,21 @@
+aws dynamodb update-table \ 
+
+    --table-name GameScore \ 
+
+    --attribute-definitions ‘[ 
+
+{AttributeName=GameName,AttributeType=S}, 
+
+{AttributeName=HighScore,AttributeType=N} 
+
+]’\ 
+
+    --global-secondary-index-updates ‘[ 
+
+{"Create": {"IndexName": "GameTitleScores","KeySchema":[ 
+
+{"AttributeName":"GameName","KeyType":"HASH"},":{"AttributeName":"HighScore","KeyType":"RANGE"}], 
+
+"Projection":{"ProjectionType":"ALL"}} 
+
+]’ 
