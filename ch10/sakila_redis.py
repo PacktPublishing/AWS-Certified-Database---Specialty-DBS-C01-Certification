@@ -76,7 +76,7 @@ def retrieve(id):
 
 
 # Display the result of some queries
-print(scan("SELECT * FROM actor"))
+print(scan("SELECT first_name, last_name FROM actor"))
 print(retrieve(1))
 print(retrieve(2))
 print(retrieve(3))
