@@ -50,9 +50,10 @@ def scan(sql):
         print("Retrieved from cache")
         return json.loads(res)
         
-        
-    res = Database.query(sql)
-    Cache.setex(sql, TTL, json.dumps(res))
+    else:    
+        print("Retrieved from DB")
+        res = Database.query(sql)
+        Cache.setex(sql, TTL, json.dumps(res))
     return res
 
 
@@ -65,8 +66,10 @@ def retrieve(id):
         print("Retrieved from cache")
         return res
 
-    sql = "SELECT `first_name`, `last_name` FROM `actor` WHERE `actor_id`=%s"
-    res = Database.store(sql, (id,))
+    else:
+        print("Retrieved from DB")
+        sql = "SELECT `first_name`, `last_name` FROM `actor` WHERE `actor_id`=%s"
+        res = Database.store(sql, (id,))
 
     if res:
         Cache.hmset(key, res)
@@ -76,7 +79,7 @@ def retrieve(id):
 
 
 # Display the result of some queries
-print(scan("SELECT first_name, last_name FROM actor"))
+#print(scan("SELECT first_name, last_name FROM actor"))
 print(retrieve(1))
 print(retrieve(2))
 print(retrieve(3))
