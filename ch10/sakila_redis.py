@@ -47,8 +47,10 @@ def scan(sql):
     res = Cache.get(sql)
 
     if res:
+        print("Retrieved from cache")
         return json.loads(res)
-
+        
+        
     res = Database.query(sql)
     Cache.setex(sql, TTL, json.dumps(res))
     return res
@@ -60,6 +62,7 @@ def retrieve(id):
     res = Cache.hgetall(key)
 
     if res:
+        print("Retrieved from cache")
         return res
 
     sql = "SELECT `first_name`, `last_name` FROM `actor` WHERE `actor_id`=%s"
