@@ -1,0 +1,31 @@
+###curl command
+curl -X POST \
+-H 'Content-Type: application/json' \
+https://dbcert-neptune-instance-1.cdhcmbt6wawh.eu-west-1.neptune.amazonaws.com:8182/loader -d '    
+{      
+"source" : "s3://dbcert-s3-kgawron",      
+"format" : "csv", 
+"iamRoleArn" : "arn:aws:iam::653375240923:role/dbcert-neptune-s3",      
+"region" : "eu-west-1",      
+"failOnError" : "FALSE",      
+"parallelism" : "MEDIUM",      
+"updateSingleCardinalityProperties" : "FALSE",      
+"queueRequest" : "FALSE"    
+}'
+
+
+###Gremlin setup on EC2
+sudo yum install java-1.8.0-devel8
+
+wget https://archive.apache.org/dist/tinkerpop/3.4.8/apache-tinkerpop-gremlin-console-3.4.8-bin.zip
+unzip apache-tinkerpop-gremlin-console-3.4.8-bin.zip
+
+cd apache-tinkerpop-gremlin-console-3.4.8
+
+wget https://www.amazontrust.com/repository/SFSRootCAG2.cermkdir /tmp/certs/
+
+cp /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.312.b07-1.amzn2.0.1.x86_64/jre/lib/security/cacerts /tmp/certs/cacertssudo keytool -importcert \             -alias neptune-tests-ca \             
+-keystore /tmp/certs/cacerts \             
+-file  /home/ec2-user/apache-tinkerpop-gremlin-console-3.4.8/SFSRootCAG2.cer \             
+-noprompt \                 
+-storepass changeit
