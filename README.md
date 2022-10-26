@@ -61,3 +61,7 @@ We also provide a PDF file that has color images of the screenshots/diagrams use
   
 ## Get to Know the Author
 **Kate Gawron** is a full-time senior database consultant and part-time future racing driver. She was a competitor in Formula Woman, and she aspires to become a professional Gran Turismo (GT) racing driver. Away from the racetrack, Kate has worked with Oracle databases for 18 years and AWS for five years. She holds four AWS certifications, including the AWS Certified Database – Specialty certification as well as two professional Oracle qualifications. Kate currently works as a senior database architect, where she works with customers to migrate and refactor their databases to work optimally within the AWS cloud.
+### Download a free PDF
+
+ <i>If you have already purchased a print or Kindle version of this book, you can get a DRM-free PDF version at no cost.<br>Simply click on the link to claim your free PDF.</i>
+<p align="center"> <a href="https://packt.link/free-ebook/9781803243108">https://packt.link/free-ebook/9781803243108 </a> </p>
