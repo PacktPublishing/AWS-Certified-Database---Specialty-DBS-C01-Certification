@@ -2,9 +2,9 @@ aws dynamodb put-item –table-name GameScores\
 
 --item’{ 
 
-“PlayerID”: {“S”: “JohnS”} 
+“PlayerID”: {“S”: “JohnS”}, 
 
-“GameName”: {“S”: “Bug Hunt”} 
+“GameName”: {“S”: “Bug Hunt”},
 
 “HighScore”: {“N”: “753”} 
 
